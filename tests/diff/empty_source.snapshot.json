@@ -1,0 +1,22 @@
+{
+  "src → target": [
+    {
+      "path": "Cat",
+      "kind": "AddObjectType",
+      "span": {
+        "start": 2,
+        "end": 10
+      }
+    }
+  ],
+  "target → src": [
+    {
+      "path": "Cat",
+      "kind": "RemoveObjectType",
+      "span": {
+        "start": 2,
+        "end": 10
+      }
+    }
+  ]
+}

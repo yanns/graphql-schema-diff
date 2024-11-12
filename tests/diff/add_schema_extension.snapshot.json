@@ -1,0 +1,22 @@
+{
+  "src → target": [
+    {
+      "path": "",
+      "kind": "RemoveSchemaExtension",
+      "span": {
+        "start": 7,
+        "end": 18
+      }
+    }
+  ],
+  "target → src": [
+    {
+      "path": "",
+      "kind": "AddSchemaExtension",
+      "span": {
+        "start": 7,
+        "end": 18
+      }
+    }
+  ]
+}

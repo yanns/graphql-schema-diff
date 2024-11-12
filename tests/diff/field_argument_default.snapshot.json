@@ -1,0 +1,22 @@
+{
+  "src → target": [
+    {
+      "path": "Query.doMop.useMop",
+      "kind": "AddFieldArgumentDefault",
+      "span": {
+        "start": 35,
+        "end": 42
+      }
+    }
+  ],
+  "target → src": [
+    {
+      "path": "Query.doMop.useMop",
+      "kind": "RemoveFieldArgumentDefault",
+      "span": {
+        "start": 0,
+        "end": 0
+      }
+    }
+  ]
+}

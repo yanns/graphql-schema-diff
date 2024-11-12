@@ -1,0 +1,22 @@
+{
+  "src → target": [
+    {
+      "path": "auth",
+      "kind": "RemoveDirectiveDefinition",
+      "span": {
+        "start": 12,
+        "end": 80
+      }
+    }
+  ],
+  "target → src": [
+    {
+      "path": "auth",
+      "kind": "AddDirectiveDefinition",
+      "span": {
+        "start": 12,
+        "end": 80
+      }
+    }
+  ]
+}

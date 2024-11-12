@@ -1,0 +1,22 @@
+{
+  "src → target": [
+    {
+      "path": "Color",
+      "kind": "RemoveUnion",
+      "span": {
+        "start": 45,
+        "end": 77
+      }
+    }
+  ],
+  "target → src": [
+    {
+      "path": "Color",
+      "kind": "AddUnion",
+      "span": {
+        "start": 45,
+        "end": 77
+      }
+    }
+  ]
+}
