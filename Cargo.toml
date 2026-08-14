@@ -3,9 +3,11 @@ name = "graphql-schema-diff"
 description = "Semantic diffing for GraphQL schemas"
 version = "0.2.0"
 edition = "2024"
-license = "MPL-2.0"
+license = "Apache-2.0"
+readme = "README.md"
 homepage = "https://github.com/yanns/graphql-schema-diff"
-keywords = ["graphql"]
+keywords = ["graphql", "schema", "diff"]
+categories = ["development-tools", "web-programming", "parsing"]
 repository = "https://github.com/yanns/graphql-schema-diff"
 
 [dependencies]
