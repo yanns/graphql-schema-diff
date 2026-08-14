@@ -2,27 +2,61 @@
 name = "graphql-schema-diff"
 description = "Semantic diffing for GraphQL schemas"
 version = "0.2.0"
-edition.workspace = true
+edition = "2024"
 license = "MPL-2.0"
-homepage.workspace = true
+homepage = "https://github.com/yanns/graphql-schema-diff"
 keywords = ["graphql"]
-repository = "https://github.com/grafbase/grafbase/tree/main/crates/graphql-schema-diff"
+repository = "https://github.com/yanns/graphql-schema-diff"
 
 [dependencies]
-cynic-parser.workspace = true
-grafbase-workspace-hack.workspace = true
-serde = { workspace = true, optional = true, features = ["derive"] }
+cynic-parser = "0.11.1"
+serde = { version = "1.0.223", optional = true, features = ["derive"] }
 
 [features]
 default = ["serde"]
 
-[lints]
-workspace = true
+[lints.rust]
+nonstandard-style = "deny"
+rust-2018-idioms = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+panic = "deny"
+bool-to-int-with-if = "allow"
+cast-possible-truncation = "allow"
+default-trait-access = "allow"
+derive-partial-eq-without-eq = "allow"
+doc-markdown = "allow"
+enum-glob-use = "allow"
+implicit-hasher = "allow"
+items-after-statements = "allow"
+into_iter_without_iter = "allow"
+iter_without_into_iter = "allow"
+large-digit-groups = "allow"
+let-underscore-untyped = "allow"
+let-with-type-underscore = "allow"
+manual-assert = "allow"
+map-unwrap-or = "allow"
+match-wildcard-for-single-variants = "allow"
+missing-errors-doc = "allow"
+missing-panics-doc = "allow"
+module-name-repetitions = "allow"
+must-use-candidate = "allow"
+needless-pass-by-value = "allow"
+redundant-closure-for-method-calls = "allow"
+single-match-else = "allow"
+struct-excessive-bools = "allow"
+struct-field-names = "allow"
+too-many-lines = "allow"
+unnecessary-fallible-conversions = "allow"
+unused-async = "allow"
+unused-self = "allow"
+wildcard-imports = "allow"
 
 [dev-dependencies]
-datatest-stable.workspace = true
-serde_json.workspace = true
-similar.workspace = true
+datatest-stable = "0.3.2"
+serde_json = { version = "1.0.145", features = ["preserve_order"] }
+similar = "2.5"
 
 [[test]]
 name = "diff_tests"
