@@ -5,6 +5,8 @@
 
 This crate implements diffing of two GraphQL schemas, returning a list of changes. It powers the changelog feature and operation checks at Grafbase.
 
+This crate was originally created in [grafbase/grafbase](https://github.com/grafbase/grafbase), and its git history was kept when extracted into this standalone repository.
+
 ## Example
 
 ```rust
