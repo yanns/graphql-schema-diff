@@ -56,7 +56,7 @@ wildcard-imports = "allow"
 [dev-dependencies]
 datatest-stable = "0.3.2"
 serde_json = { version = "1.0.145", features = ["preserve_order"] }
-similar = "2.5"
+similar = "3.0"
 
 [[test]]
 name = "diff_tests"
