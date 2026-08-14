@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## [0.3.0](https://github.com/yanns/graphql-schema-diff/compare/v0.2.0...v0.3.0) - 2026-08-14
+
+### Fixed
+
+- *(deps)* update dependencies-non-major ([#2484](https://github.com/yanns/graphql-schema-diff/pull/2484))
+- unnecessary format!
+- *(engine)* better handling of entity interface fields
+
 - Enrich `Change` with spans pointing to the added / changed / removed parts of schemas (https://github.com/grafbase/grafbase/pull/2014)
 - New top-level export: `patch()`. This lets you take a diff and spans resolved from it, and apply it to a schema. (https://github.com/grafbase/grafbase/pull/2072)
 - The `ChangeKind` enum now has a `ChangeKind::as_str()` function and a `FromStr` implementation, implementing respectively its conversion to and from strings.
