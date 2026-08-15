@@ -9,6 +9,23 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  commit-convention:
+    name: Commit convention
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && !startsWith(github.head_ref, 'release-plz-') }}
+    steps:
+      - name: Check PR title follows Conventional Commits
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          pattern='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9_-]+\))?!?: .+'
+          if ! echo "$PR_TITLE" | grep -qP "$pattern"; then
+            echo "::error::PR title '$PR_TITLE' does not follow the Conventional Commits format expected by git-cliff."
+            echo "Expected: <type>(<optional scope>): <description>, e.g. 'fix(parser): handle empty schema'"
+            echo "Allowed types: build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test"
+            exit 1
+          fi
+
   clippy:
     name: Clippy
     runs-on: ubuntu-latest
