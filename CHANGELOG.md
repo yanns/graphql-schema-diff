@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## [0.4.0](https://github.com/yanns/graphql-schema-diff/compare/v0.3.0...v0.4.0) - 2026-08-15
+
+### Added
+
+- diff directive usage ([#14](https://github.com/yanns/graphql-schema-diff/pull/14))
+
+### Other
+
+- follow git commit convention for release notes ([#13](https://github.com/yanns/graphql-schema-diff/pull/13))
+- automated release ([#11](https://github.com/yanns/graphql-schema-diff/pull/11))
+
 ## [0.3.0](https://github.com/yanns/graphql-schema-diff/compare/v0.2.0...v0.3.0) - 2026-08-14
 
 ### Fixed
