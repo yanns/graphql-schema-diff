@@ -88,6 +88,7 @@ pub fn resolve_spans<'a: 'b, 'b>(
             ChangeKind::ChangeFieldArgumentType => target,
             ChangeKind::AddDirective => target,
             ChangeKind::RemoveDirective => source,
+            ChangeKind::ChangeDescription => target,
         };
 
         &relevant_schema[change.span]

@@ -19,6 +19,8 @@ pub(crate) struct DiffState<'a> {
     pub(crate) field_directives: HashMap<[&'a str; 2], [Vec<ast::Directive<'a>>; 2]>,
     /// Directive usages on field arguments. Key: [type name, field name, arg name].
     pub(crate) argument_directives: HashMap<[&'a str; 3], [Vec<ast::Directive<'a>>; 2]>,
+    /// Descriptions on fields (including enum values, input fields). Key: [type name, field name].
+    pub(crate) field_descriptions: HashMap<[&'a str; 2], [Option<ast::Description<'a>>; 2]>,
 }
 
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
@@ -62,6 +64,7 @@ impl DiffState<'_> {
             type_directives,
             field_directives,
             argument_directives,
+            field_descriptions,
         } = self;
 
         let mut changes = Vec::new();
@@ -88,6 +91,8 @@ impl DiffState<'_> {
             &fields_map,
             &mut push_change,
         );
+        push_type_description_changes(&types_map, &mut push_change);
+        push_field_description_changes(&field_descriptions, &fields_map, &types_map, &mut push_change);
 
         changes.sort();
 
@@ -188,19 +193,27 @@ fn push_argument_changes(
 
                 match (src_arg.default_value(), target_arg.default_value()) {
                     (None, Some(_)) => push_change(
-                        argument_path,
+                        argument_path.clone(),
                         ChangeKind::AddFieldArgumentDefault,
                         target_arg.default_value_span().into(),
                     ),
                     (Some(_), None) => {
-                        push_change(argument_path, ChangeKind::RemoveFieldArgumentDefault, Span::empty())
+                        push_change(argument_path.clone(), ChangeKind::RemoveFieldArgumentDefault, Span::empty())
                     }
                     (Some(a), Some(b)) if a != b => push_change(
-                        argument_path,
+                        argument_path.clone(),
                         ChangeKind::ChangeFieldArgumentDefault,
                         target_arg.default_value_span().into(),
                     ),
                     _ => (),
+                }
+
+                if src_arg.description().map(|d| d.to_cow()) != target_arg.description().map(|d| d.to_cow()) {
+                    push_change(
+                        argument_path,
+                        ChangeKind::ChangeDescription,
+                        target_arg.description().map(|d| d.span().into()).unwrap_or_else(Span::empty),
+                    );
                 }
             }
         };
@@ -280,6 +293,73 @@ fn push_definition_changes(
                 push_added_type(name, *b, push_change);
             }
             (Some(_), Some(_)) => (),
+        }
+    }
+}
+
+fn definition_description<'a>(definition: &ast::Definition<'a>) -> Option<ast::Description<'a>> {
+    match definition {
+        ast::Definition::Schema(def) | ast::Definition::SchemaExtension(def) => def.description(),
+        ast::Definition::Type(ty) | ast::Definition::TypeExtension(ty) => ty.description(),
+        ast::Definition::Directive(def) => def.description(),
+    }
+}
+
+// Descriptions on type definitions (including directive definitions). Additions, removals and kind changes are
+// already covered by push_definition_changes(), since the whole new/old definition text (description included)
+// is reported in those cases.
+fn push_type_description_changes(types_map: &DiffMap<&str, ast::Definition<'_>>, push_change: PushChangeFn<'_>) {
+    for (name, entries) in types_map {
+        let (Some(src), Some(target)) = entries else { continue };
+
+        if DefinitionKind::new(src) != DefinitionKind::new(target) {
+            continue;
+        }
+
+        let src_description = definition_description(src).map(|d| d.to_cow());
+        let target_description = definition_description(target).map(|d| d.to_cow());
+
+        if src_description != target_description {
+            let path = if matches!(target, ast::Definition::Directive(_)) {
+                path::Path::DirectiveDefinition(name)
+            } else {
+                path::Path::TypeDefinition(name, None)
+            };
+
+            push_change(
+                path,
+                ChangeKind::ChangeDescription,
+                definition_description(target).map(|d| d.span().into()).unwrap_or_else(Span::empty),
+            );
+        }
+    }
+}
+
+// Descriptions on fields, enum values and input object fields.
+fn push_field_description_changes(
+    field_descriptions: &HashMap<[&str; 2], [Option<ast::Description<'_>>; 2]>,
+    fields_map: &DiffMap<[&str; 2], (Option<ast::Type<'_>>, Span)>,
+    types_map: &DiffMap<&str, ast::Definition<'_>>,
+    push_change: PushChangeFn<'_>,
+) {
+    for ([type_name, field_name], [src, target]) in field_descriptions {
+        // Skip if the parent type was added/removed/changed kind.
+        match types_map.get(type_name) {
+            Some((Some(a), Some(b))) if DefinitionKind::new(a) == DefinitionKind::new(b) => (),
+            _ => continue,
+        }
+        // Skip if the field itself was added or removed.
+        match fields_map.get(&[*type_name, *field_name]) {
+            Some((Some(_), Some(_))) => (),
+            _ => continue,
+        }
+
+        if src.map(|d| d.to_cow()) != target.map(|d| d.to_cow()) {
+            push_change(
+                path::Path::TypeDefinition(type_name, Some(path::PathInType::InField(field_name, None))),
+                ChangeKind::ChangeDescription,
+                target.map(|d| d.span().into()).unwrap_or_else(Span::empty),
+            );
         }
     }
 }
@@ -507,6 +587,14 @@ fn push_schema_definition_changes(
                     target_subscription
                         .map(|ty| ty.named_type_span().into())
                         .unwrap_or_else(Span::empty),
+                );
+            }
+
+            if src.description().map(|d| d.to_cow()) != target.description().map(|d| d.to_cow()) {
+                push_change(
+                    path::Path::SchemaDefinition,
+                    ChangeKind::ChangeDescription,
+                    target.description().map(|d| d.span().into()).unwrap_or_else(Span::empty),
                 );
             }
         }

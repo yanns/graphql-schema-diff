@@ -1,0 +1,70 @@
+{
+  "src → target": [
+    {
+      "path": "Role.ADMIN",
+      "kind": "ChangeDescription",
+      "span": {
+        "start": 241,
+        "end": 280
+      }
+    },
+    {
+      "path": "User",
+      "kind": "ChangeDescription",
+      "span": {
+        "start": 2,
+        "end": 44
+      }
+    },
+    {
+      "path": "User.id",
+      "kind": "ChangeDescription",
+      "span": {
+        "start": 59,
+        "end": 109
+      }
+    },
+    {
+      "path": "User.name.withTitle",
+      "kind": "ChangeDescription",
+      "span": {
+        "start": 132,
+        "end": 188
+      }
+    }
+  ],
+  "target → src": [
+    {
+      "path": "Role.ADMIN",
+      "kind": "ChangeDescription",
+      "span": {
+        "start": 216,
+        "end": 247
+      }
+    },
+    {
+      "path": "User",
+      "kind": "ChangeDescription",
+      "span": {
+        "start": 0,
+        "end": 29
+      }
+    },
+    {
+      "path": "User.id",
+      "kind": "ChangeDescription",
+      "span": {
+        "start": 44,
+        "end": 85
+      }
+    },
+    {
+      "path": "User.name.withTitle",
+      "kind": "ChangeDescription",
+      "span": {
+        "start": 108,
+        "end": 163
+      }
+    }
+  ]
+}
