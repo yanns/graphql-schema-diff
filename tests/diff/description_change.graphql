@@ -1,0 +1,49 @@
+"""
+A user in the system.
+"""
+type User {
+  """
+  The user's unique identifier.
+  """
+  id: ID!
+  name(
+    """
+    Whether to include the honorific title.
+    """
+    withTitle: Boolean
+  ): String
+}
+
+enum Role {
+  """
+  Can read and write.
+  """
+  ADMIN
+  VIEWER
+}
+
+# --- #
+
+"""
+A registered user of the platform.
+"""
+type User {
+  """
+  The user's globally unique identifier.
+  """
+  id: ID!
+  name(
+    """
+    Whether to prefix the name with a title.
+    """
+    withTitle: Boolean
+  ): String
+}
+
+enum Role {
+  """
+  Can read, write and delete.
+  """
+  ADMIN
+  VIEWER
+}

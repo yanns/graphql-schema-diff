@@ -25,6 +25,7 @@ pub struct Change {
     /// - [AddEnumValue]/[RemoveEnumValue]: empty
     /// - [AddFieldArgument]: the value of the argument, potentially with the default
     /// - [AddFieldArgumentDefault]/[ChangeFieldArgumentDefault]: the default value of the argument
+    /// - [ChangeDescription]: the new description, or empty if the description was removed
     pub span: Span,
 }
 
@@ -72,6 +73,7 @@ pub enum ChangeKind {
     ChangeFieldArgumentType,
     AddDirective,
     RemoveDirective,
+    ChangeDescription,
 }
 
 impl ChangeKind {
@@ -118,6 +120,7 @@ impl ChangeKind {
             ChangeFieldArgumentType => "ChangeFieldArgumentType",
             AddDirective => "AddDirective",
             RemoveDirective => "RemoveDirective",
+            ChangeDescription => "ChangeDescription",
         }
     }
 }
@@ -165,6 +168,7 @@ impl std::str::FromStr for ChangeKind {
             "ChangeFieldArgumentType" => Self::ChangeFieldArgumentType,
             "AddDirective" => Self::AddDirective,
             "RemoveDirective" => Self::RemoveDirective,
+            "ChangeDescription" => Self::ChangeDescription,
             _ => return Err(()),
         })
     }
