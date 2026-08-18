@@ -6,7 +6,8 @@
       "span": {
         "start": 50,
         "end": 56
-      }
+      },
+      "source_span": null
     },
     {
       "path": "People",
@@ -14,7 +15,8 @@
       "span": {
         "start": 49,
         "end": 76
-      }
+      },
+      "source_span": null
     }
   ],
   "target → src": [
@@ -24,6 +26,10 @@
       "span": {
         "start": 0,
         "end": 0
+      },
+      "source_span": {
+        "start": 50,
+        "end": 56
       }
     },
     {
@@ -32,7 +38,8 @@
       "span": {
         "start": 49,
         "end": 76
-      }
+      },
+      "source_span": null
     }
   ]
 }

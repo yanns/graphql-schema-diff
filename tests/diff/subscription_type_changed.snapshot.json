@@ -6,7 +6,8 @@
       "span": {
         "start": 63,
         "end": 64
-      }
+      },
+      "source_span": null
     },
     {
       "path": ":schema",
@@ -14,7 +15,8 @@
       "span": {
         "start": 80,
         "end": 81
-      }
+      },
+      "source_span": null
     }
   ],
   "target → src": [
@@ -24,7 +26,8 @@
       "span": {
         "start": 49,
         "end": 50
-      }
+      },
+      "source_span": null
     },
     {
       "path": ":schema",
@@ -32,7 +35,8 @@
       "span": {
         "start": 66,
         "end": 67
-      }
+      },
+      "source_span": null
     }
   ]
 }

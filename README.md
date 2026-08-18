@@ -54,21 +54,25 @@ assert_eq!(changes,
             path: String::from("Pizza.name"),
             kind: ChangeKind::ChangeFieldType,
             span: Span::new(38, 47),
+            source_span: Some(Span::new(38, 45)),
         },
         Change {
             path: String::from("PizzaName"),
             kind: ChangeKind::AddObjectType,
             span: Span::new(81, 142),
+            source_span: None,
         },
         Change {
             path: String::from("Topping.PINEAPPLE"),
             kind: ChangeKind::RemoveEnumValue,
             span: Span::new(0, 0),
+            source_span: Some(Span::new(123, 135)),
         },
         Change {
             path: String::from("Topping.POTATO"),
             kind: ChangeKind::AddEnumValue,
             span: Span::new(190, 199),
+            source_span: None,
         }
 ]);
 

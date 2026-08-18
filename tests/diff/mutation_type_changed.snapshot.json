@@ -6,7 +6,8 @@
       "span": {
         "start": 45,
         "end": 46
-      }
+      },
+      "source_span": null
     }
   ],
   "target → src": [
@@ -16,7 +17,8 @@
       "span": {
         "start": 45,
         "end": 46
-      }
+      },
+      "source_span": null
     }
   ]
 }
