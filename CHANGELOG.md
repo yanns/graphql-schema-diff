@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## [0.6.0](https://github.com/yanns/graphql-schema-diff/compare/v0.5.1...v0.6.0) - 2026-08-18
+
+### Added
+
+- changes have a pointer to the source ([#22](https://github.com/yanns/graphql-schema-diff/pull/22))
+
+### Other
+
+- check for formatting ([#24](https://github.com/yanns/graphql-schema-diff/pull/24))
+
 ## [0.5.1](https://github.com/yanns/graphql-schema-diff/compare/v0.5.0...v0.5.1) - 2026-08-18
 
 ### Fixed
