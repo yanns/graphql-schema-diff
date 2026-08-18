@@ -27,6 +27,23 @@ pub struct Change {
     /// - [AddFieldArgumentDefault]/[ChangeFieldArgumentDefault]: the default value of the argument
     /// - [ChangeDescription]: the new description, or empty if the description was removed
     pub span: Span,
+
+    /// The span of the corresponding content in the `source` schema, when there is meaningful
+    /// content there to point to. `None` otherwise, in particular for change kinds where the item
+    /// only exists in the `target` schema (e.g. [AddField]) or carries no content on either side
+    /// (e.g. [AddInterfaceImplementation]/[RemoveInterfaceImplementation]).
+    ///
+    /// Currently populated for:
+    ///
+    /// - [ChangeFieldType]/[ChangeFieldArgumentType]: the old type
+    /// - [ChangeFieldArgumentDefault]: the old default value of the argument
+    /// - [ChangeDescription]: the old description, or `None` if the description was added
+    /// - [RemoveField]/[RemoveEnumValue]/[RemoveUnionMember]: the removed field/value/member
+    /// - [RemoveFieldArgument]: the removed argument
+    /// - [RemoveFieldArgumentDefault]: the removed default value of the argument
+    /// - [RemoveSchemaDefinition]: the removed schema definition
+    /// - [RemoveDirective]: the removed directive usage
+    pub source_span: Option<Span>,
 }
 
 #[derive(Copy, Clone, Eq, PartialEq, Hash, Ord, PartialOrd, Debug)]

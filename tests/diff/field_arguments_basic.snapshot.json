@@ -6,6 +6,10 @@
       "span": {
         "start": 0,
         "end": 0
+      },
+      "source_span": {
+        "start": 228,
+        "end": 245
       }
     },
     {
@@ -14,7 +18,8 @@
       "span": {
         "start": 299,
         "end": 317
-      }
+      },
+      "source_span": null
     }
   ],
   "target → src": [
@@ -24,7 +29,8 @@
       "span": {
         "start": 228,
         "end": 245
-      }
+      },
+      "source_span": null
     },
     {
       "path": "PriceArgs.currency",
@@ -32,6 +38,10 @@
       "span": {
         "start": 0,
         "end": 0
+      },
+      "source_span": {
+        "start": 299,
+        "end": 317
       }
     }
   ]

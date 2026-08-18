@@ -94,3 +94,14 @@ pub fn resolve_spans<'a: 'b, 'b>(
         &relevant_schema[change.span]
     })
 }
+
+/// Resolve the source spans from [Change]s and the source schema, for change kinds that have a
+/// meaningful source span (see [Change::source_span]). Source spans are always relative to the
+/// `source` schema, since a [Change] always goes from source to target. Yields `None` for changes
+/// without a source span.
+pub fn resolve_source_spans<'a: 'b, 'b>(
+    source: &'a str,
+    changes: &'b [Change],
+) -> impl Iterator<Item = Option<&'a str>> + 'b {
+    changes.iter().map(move |change| Some(&source[change.source_span?]))
+}

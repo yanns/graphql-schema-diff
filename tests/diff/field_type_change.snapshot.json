@@ -6,6 +6,10 @@
       "span": {
         "start": 40,
         "end": 44
+      },
+      "source_span": {
+        "start": 36,
+        "end": 43
       }
     },
     {
@@ -14,6 +18,10 @@
       "span": {
         "start": 31,
         "end": 37
+      },
+      "source_span": {
+        "start": 29,
+        "end": 33
       }
     }
   ],
@@ -24,6 +32,10 @@
       "span": {
         "start": 36,
         "end": 43
+      },
+      "source_span": {
+        "start": 40,
+        "end": 44
       }
     },
     {
@@ -32,6 +44,10 @@
       "span": {
         "start": 29,
         "end": 33
+      },
+      "source_span": {
+        "start": 31,
+        "end": 37
       }
     }
   ]

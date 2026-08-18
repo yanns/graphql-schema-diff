@@ -6,7 +6,8 @@
       "span": {
         "start": 154,
         "end": 180
-      }
+      },
+      "source_span": null
     },
     {
       "path": "CreateSeussCharacterInput.favoriteRhyme",
@@ -14,7 +15,8 @@
       "span": {
         "start": 252,
         "end": 275
-      }
+      },
+      "source_span": null
     },
     {
       "path": "SeussCharacter.whimsicalQuote",
@@ -22,7 +24,8 @@
       "span": {
         "start": 57,
         "end": 81
-      }
+      },
+      "source_span": null
     }
   ],
   "target → src": [
@@ -32,6 +35,10 @@
       "span": {
         "start": 0,
         "end": 0
+      },
+      "source_span": {
+        "start": 154,
+        "end": 180
       }
     },
     {
@@ -40,6 +47,10 @@
       "span": {
         "start": 0,
         "end": 0
+      },
+      "source_span": {
+        "start": 252,
+        "end": 275
       }
     },
     {
@@ -48,6 +59,10 @@
       "span": {
         "start": 0,
         "end": 0
+      },
+      "source_span": {
+        "start": 57,
+        "end": 81
       }
     }
   ]
