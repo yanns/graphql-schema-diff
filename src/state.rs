@@ -228,7 +228,10 @@ fn push_argument_changes(
                     push_change(
                         argument_path,
                         ChangeKind::ChangeDescription,
-                        target_arg.description().map(|d| d.span().into()).unwrap_or_else(Span::empty),
+                        target_arg
+                            .description()
+                            .map(|d| d.span().into())
+                            .unwrap_or_else(Span::empty),
                         src_arg.description().map(|d| d.span().into()),
                     );
                 }
@@ -272,11 +275,11 @@ fn push_field_changes(
             (Some((_, span)), None, DefinitionKind::Union) if !parent_is_gone() => {
                 Some((ChangeKind::RemoveUnionMember, Span::empty(), Some(*span)))
             }
-            (Some((_, span)), None, DefinitionKind::Object | DefinitionKind::Interface | DefinitionKind::InputObject)
-                if !parent_is_gone() =>
-            {
-                Some((ChangeKind::RemoveField, Span::empty(), Some(*span)))
-            }
+            (
+                Some((_, span)),
+                None,
+                DefinitionKind::Object | DefinitionKind::Interface | DefinitionKind::InputObject,
+            ) if !parent_is_gone() => Some((ChangeKind::RemoveField, Span::empty(), Some(*span))),
             (
                 Some((ty_a, _)),
                 Some((ty_b, _)),
@@ -351,7 +354,9 @@ fn push_type_description_changes(types_map: &DiffMap<&str, ast::Definition<'_>>,
             push_change(
                 path,
                 ChangeKind::ChangeDescription,
-                definition_description(target).map(|d| d.span().into()).unwrap_or_else(Span::empty),
+                definition_description(target)
+                    .map(|d| d.span().into())
+                    .unwrap_or_else(Span::empty),
                 definition_description(src).map(|d| d.span().into()),
             );
         }
@@ -545,11 +550,21 @@ fn diff_same_name_directives<'a>(
     for i in 0..src.len().max(target.len()) {
         match (src.get(i), target.get(i)) {
             (None, Some(d)) => emit(name, i, ChangeKind::AddDirective, directive_usage_span(d), None),
-            (Some(s), None) => {
-                emit(name, i, ChangeKind::RemoveDirective, Span::empty(), Some(directive_usage_span(s)))
-            }
+            (Some(s), None) => emit(
+                name,
+                i,
+                ChangeKind::RemoveDirective,
+                Span::empty(),
+                Some(directive_usage_span(s)),
+            ),
             (Some(s), Some(t)) if !directive_args_equal(s, t) => {
-                emit(name, i, ChangeKind::RemoveDirective, Span::empty(), Some(directive_usage_span(s)));
+                emit(
+                    name,
+                    i,
+                    ChangeKind::RemoveDirective,
+                    Span::empty(),
+                    Some(directive_usage_span(s)),
+                );
                 emit(name, i, ChangeKind::AddDirective, directive_usage_span(t), None);
             }
             _ => (),
@@ -628,7 +643,10 @@ fn push_schema_definition_changes(
                 push_change(
                     path::Path::SchemaDefinition,
                     ChangeKind::ChangeDescription,
-                    target.description().map(|d| d.span().into()).unwrap_or_else(Span::empty),
+                    target
+                        .description()
+                        .map(|d| d.span().into())
+                        .unwrap_or_else(Span::empty),
                     src.description().map(|d| d.span().into()),
                 );
             }
