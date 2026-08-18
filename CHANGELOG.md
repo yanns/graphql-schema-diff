@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## [0.5.1](https://github.com/yanns/graphql-schema-diff/compare/v0.5.0...v0.5.1) - 2026-08-18
+
+### Fixed
+
+- *(serde)* allow using the crate without the serde feature ([#20](https://github.com/yanns/graphql-schema-diff/pull/20))
+
 ## [0.5.0](https://github.com/yanns/graphql-schema-diff/compare/v0.4.0...v0.5.0) - 2026-08-17
 
 ### Added
