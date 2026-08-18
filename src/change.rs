@@ -175,7 +175,8 @@ impl std::str::FromStr for ChangeKind {
 }
 
 /// A span in a source file.
-#[derive(Clone, Eq, PartialEq, Hash, Ord, PartialOrd, Debug, serde::Serialize, serde::Deserialize, Copy)]
+#[derive(Clone, Eq, PartialEq, Hash, Ord, PartialOrd, Debug, Copy)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Span {
     /// The byte offset where the span starts.
     pub start: usize,
