@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## [0.5.0](https://github.com/yanns/graphql-schema-diff/compare/v0.4.0...v0.5.0) - 2026-08-17
+
+### Added
+
+- handle description changes ([#16](https://github.com/yanns/graphql-schema-diff/pull/16))
+
+### Other
+
+- Update Rust crate similar to v3.2.0 ([#19](https://github.com/yanns/graphql-schema-diff/pull/19))
+- *(deps)* follow semantic commits ([#18](https://github.com/yanns/graphql-schema-diff/pull/18))
+
 ## [0.4.0](https://github.com/yanns/graphql-schema-diff/compare/v0.3.0...v0.4.0) - 2026-08-15
 
 ### Added
